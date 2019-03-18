@@ -18,7 +18,7 @@ public class Main {
         return (endTime - startTime) / 1000000000.0;
     }
     public static void main(String[] args) {
-
+        String a = "sss";
         int opCount = 1000000;
 
         ArrayQueue<Integer> aq = new ArrayQueue<>();
