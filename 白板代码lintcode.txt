@@ -1,0 +1,134 @@
+627. longest Palindrome
+
+public class Solution{
+	public int solution(String s) {
+		if (s == null || s.length() == 0) return 0;
+		HashSet<Character> set = new HashSet<>();
+		for (int i = 0; i < s.length(); i++) {
+			if (set.contains(s.charAt(i))) {
+				set.remove(s.charAt(i));
+			} else {
+				set.add(s.charAt(i));
+			}
+		}
+		//注意等号
+		return set.size() > 0 ? s.length() - set.size() + 1 : s.length();
+	}
+}
+
+
+
+13. Implement strStr()
+
+public class Solution{
+	public int solution(String target, String source){
+		if (target == null || target.length() == 0) return -1;
+		if (source == null || source.length() == 0) return -1;
+
+		for (int i = 0; i < target.length(); i++) {
+			for (int j = i; j < source.length(); j++) {
+				if (target.charAt(i + j) != source.charAt(j)) {
+					break;
+				}
+			}
+
+			if (j == source.length()) {
+				return i;
+			}
+		}
+
+		return -1;
+	}
+}
+正确答案: use j replace index
+public class Solution {
+    /**
+     * @param source: 
+     * @param target: 
+     * @return: return the index
+     */
+    public int strStr(String source, String target) {
+        // 没有check target 和source的长度
+        // 不用check target.length==0 因为有 '' vs '' 的情况
+        if (source == null || target == null) return -1;
+        if (target.length() > source.length()) return -1;
+        for (int i = 0; i < source.length() - target.length() + 1; i++) {
+            int j;
+            //没有 考虑String长度越界问题
+            for (j = 0; j < target.length(); j++) {
+                if (source.charAt(i + j) != target.charAt(j)) {
+                    break;
+                }
+            }
+            if (j == target.length()) return i;
+        }
+        return -1;
+    }
+}
+
+415 Valid Palindrome
+
+public class Solution{
+	public boolean solution(String s) {
+		if (s == null) return false;
+		if (s.length() == 0) return true;
+
+		int left = 0;
+		int right = s.length - 1;
+		while (left < right) {
+		    while (!check(s.charAt(left) && left < right) {
+		        left++;
+		    }
+		    if (left == right) break;
+		    while (!check(s.charAt(right) && left < right) {
+		        right--;
+		    }
+		    if (s.charAt(left) == s.charAt(right)) {
+		        left++;
+		        right--;
+		    } else {
+		        return false;
+		    }
+		}
+	}
+	public boolean check(char c){
+		return c.isDigit() || c.isLetter()
+	}
+}
+答案
+public class Solution {
+    public boolean isPalindrome(String s) {
+        if (s == null || s.length() == 0) {
+            return true;
+        }
+
+        int front = 0;
+        int end = s.length() - 1;
+        while (front < end) {
+            while (front < s.length() && !isvalid(s.charAt(front))) { // nead to check range of a/b
+                front++;
+            }
+
+            if (front == s.length()) { // for empty string “.,,,”
+                return true;
+            }
+
+            while (end >= 0 && ! isvalid(s.charAt(end))) { // same here, need to check border of a,b
+                end--;
+            }
+            // lowercase
+            if (Character.toLowerCase(s.charAt(front)) != Character.toLowerCase(s.charAt(end))) {
+                break;
+            } else {
+                front++;
+                end--;
+            }
+        }
+
+        return end <= front;
+    }
+
+    private boolean isvalid (char c) {
+        return Character.isLetter(c) || Character.isDigit(c);
+    }
+}

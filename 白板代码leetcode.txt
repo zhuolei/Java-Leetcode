@@ -1,0 +1,67 @@
+627. longest Palindrome
+
+public class Solution{
+	public int solution(String s) {
+		if (s == null || s.length() == 0) return 0;
+		HashSet<Character> set = new HashSet<>();
+		for (int i = 0; i < s.length(); i++) {
+			if (set.contains(s.charAt(i))) {
+				set.remove(s.charAt(i));
+			} else {
+				set.add(s.charAt(i));
+			}
+		}
+		//注意等号
+		return set.size() > 0 ? s.length() - set.size() + 1 : s.length();
+	}
+}
+
+
+
+13. Implement strStr()
+
+public class Solution{
+	public int solution(String target, String source){
+		if (target == null || target.length() == 0) return -1;
+		if (source == null || source.length() == 0) return -1;
+
+		for (int i = 0; i < target.length(); i++) {
+			for (int j = i; j < source.length(); j++) {
+				if (target.charAt(i + j) != source.charAt(j)) {
+					break;
+				}
+			}
+
+			if (j == source.length()) {
+				return i;
+			}
+		}
+
+		return -1;
+	}
+}
+正确答案: use j replace index
+public class Solution {
+    /**
+     * @param source: 
+     * @param target: 
+     * @return: return the index
+     */
+    public int strStr(String source, String target) {
+        // 没有check target 和source的长度
+        if (source == null || target == null) return -1;
+        if (target.length() > source.length()) return -1;
+        for (int i = 0; i < source.length() - target.length() + 1; i++) {
+            int j;
+            //没有 考虑String长度越界问题
+            for (j = 0; j < target.length(); j++) {
+                if (source.charAt(i + j) != target.charAt(j)) {
+                    break;
+                }
+            }
+            if (j == target.length()) return i;
+        }
+        return -1;
+    }
+}
+

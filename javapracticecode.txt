@@ -1,0 +1,72 @@
+class Node{
+	int val;
+	Node next;
+	public node(int val){
+        this.val = val
+	}
+}
+
+public class RemoveString{
+    public void removeDul(Node head) {
+        Node cur = head;
+        while(cur != null){
+            Node run = cur;
+            while(run.next != null) {
+                if(cur.val == run.next.val){
+                    run.next = run.next.next;
+                } else {
+                    run = run.next;
+                }
+            }
+            cur = cur.next;
+        }
+    }
+}
+
+
+
+
+public class solution{
+    public static char findFirst(String s) {
+        if (s == null || s.length() == 0) return '';
+
+        HashMap<Character,Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (map.get(s.charAt(i)) == 1) {
+                return s.charAt(i);
+            }
+        }
+        return '';
+    }
+}
+
+class Person{
+    public String firstName;
+    public String lastName;
+
+    public boolean equals(Object o){
+        if (! o instanceof Person) {
+            return false;
+        }
+        return this.firstName.equals(o.firstName) && this.lastName.equals(o.lastName);
+    }
+}
+
+public class Compare{
+    public static void main(String[] args) {
+        Comparator<Person> c = new Comparator<>((a, b) -> {
+            if(!a.firstName.equals(b.firstName)) {
+                return a.firstName.compareTo(b.firstName);
+            }
+            return a.lastName.compareTo(b.lastName);
+        })
+    }
+}
+
+
+
+
+
