@@ -1,4 +1,4 @@
-package com.mercury.interview;
+package com.mercury.interview.apple;
 
 public class SignOfArray {
     public static int solution(int[] A) {

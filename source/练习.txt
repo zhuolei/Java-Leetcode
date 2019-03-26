@@ -1,0 +1,118 @@
+
+public class Solution{
+    public String longestPalindrome (String s) {
+        if (s == null || s.length() == 0) return "";
+        int start = 0, len = 0, longest = 0;
+        for (int i = 0; i < s.length(); i++) {
+            len = helper(s, i, i);
+            if (len > longest) {
+                longest = len;
+                start = i - len/2;
+            }
+            len = helper(s, i, i+1);
+            if (len > longest) {
+                longest = len;
+                start = i - len/2 + 1;
+            }
+        }
+        return s.substring(start, start + longest);
+    }
+    public int helper(String s, int left, int right) {
+        int len = 0;
+        while (left >= 0 && right < s.length()) {
+            if (s.charAt(left) != s.charAt(right)) {
+                break;
+            }
+            if (left == right) {
+                len += 1;
+            } else {
+                len += 2;
+            }
+            left--;
+            right++;
+        }
+        return len;
+    }
+
+    Node {
+        int val;
+        Node next;
+        Node(int val) {
+            this.val = val;
+        }
+    }
+    public void removeDuplicate(Node head) {
+        if (head == null) return;
+        Node cur = head;
+        while (cur.next != null) {
+            Node run = cur;
+            while (run.next != null) {
+                if (cur.val == run.next.val) {
+                    run.next = run.next.next
+                } else {
+                    run = run.next
+                }
+            }
+            cur = cur.next;
+        }
+    }
+}
+
+public class solution {
+    public Node merge(Node head1, Node head2) {
+        Node cur, newHead;
+        if (head1 == null && head2 == null) {
+            return null;
+        }
+        if (head1 == null) {
+            return head2;
+        }
+        if (head2 == null) {
+            return head1;
+        }
+        if (head1.val < head2.val) {
+            newHead = head1;
+        } else {
+            newHead = head2;
+        }
+
+        1 3 5 null
+        2 4 6 null
+
+        5  6
+         null
+         null
+
+
+        1234
+        5678
+        while (head1 != null || head2 != null) {
+            if (head1 == null) {
+                cur = head2;
+                return newHead;
+            }
+            if (head2 == null) {
+                cur = head1;
+                return newHead;
+            }
+            if (head1.val < head2.val && head1.next != null) {
+                cur = head1;
+                head1 = head1.next;
+            } else if (head1.val >= head2.val && head2.next != null) {
+                cur = head2;
+                head2 = head2.next;
+            }
+            cur = cur.next;
+        }
+        return newHead;
+    }
+}
+
+class Node {
+   int val;
+   Node next;
+   Node (int val) {
+        this.val = val;
+   }
+}
+

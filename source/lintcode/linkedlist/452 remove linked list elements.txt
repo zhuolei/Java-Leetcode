@@ -1,0 +1,16 @@
+452 remove linked list elements
+public class Solution {
+    public void remove(ListNode head, int val) {
+        ListNode fakeHead = new ListNode(0);
+        fakeHead.next = head;
+        head = fakeHead;
+        while (head.next != null) {
+            if (head.next.val == val) {
+                head.next = head.next.next;
+            } else {
+                head = head.next;
+            }
+        }
+        return fakeHead.next;
+    }
+}

@@ -1,4 +1,4 @@
-package com.mercury.interview;
+package com.mercury.interview.apple;
 
 public class DayOfWeek {
     public static String solution(String S,int K ) {

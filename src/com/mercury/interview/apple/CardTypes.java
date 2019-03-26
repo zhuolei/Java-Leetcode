@@ -1,4 +1,4 @@
-package com.mercury.interview;
+package com.mercury.interview.apple;
 
 public interface CardTypes {
     static enum Color{

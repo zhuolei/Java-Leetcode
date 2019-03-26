@@ -1,0 +1,47 @@
+13. Implement strStr()
+
+public class Solution{
+	public int solution(String target, String source){
+		if (target == null || target.length() == 0) return -1;
+		if (source == null || source.length() == 0) return -1;
+
+		for (int i = 0; i < target.length(); i++) {
+			for (int j = i; j < source.length(); j++) {
+				if (target.charAt(i + j) != source.charAt(j)) {
+					break;
+				}
+			}
+
+			if (j == source.length()) {
+				return i;
+			}
+		}
+
+		return -1;
+	}
+}
+正确答案: use j replace index
+public class Solution {
+    /**
+     * @param source:
+     * @param target:
+     * @return: return the index
+     */
+    public int strStr(String source, String target) {
+        // 没有check target 和source的长度
+        // 不用check target.length==0 因为有 '' vs '' 的情况
+        if (source == null || target == null) return -1;
+        if (target.length() > source.length()) return -1;
+        for (int i = 0; i < source.length() - target.length() + 1; i++) {
+            int j;
+            //没有 考虑String长度越界问题
+            for (j = 0; j < target.length(); j++) {
+                if (source.charAt(i + j) != target.charAt(j)) {
+                    break;
+                }
+            }
+            if (j == target.length()) return i;
+        }
+        return -1;
+    }
+}

@@ -13,7 +13,7 @@ public class Lintcode627 {
                 set.add(s.charAt(i));
             }
         }
-        return set.size() >= 0 ? s.length() - set.size() + 1 : s.length();
+        return set.size() > 0 ? s.length() - set.size() + 1 : s.length();
     }
 
 }
